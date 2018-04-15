@@ -11,7 +11,7 @@ final class Connection
     private static $port     = "3306";
     private static $user     = "root";
     private static $password = "";
-    private static $db       = "school";
+    private static $db       = "myschool";
     
     /*Metodos que trazem o conteudo da variavel desejada
      @return   $xxx = conteudo da variavel solicitada*/

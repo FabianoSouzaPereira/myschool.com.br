@@ -89,13 +89,31 @@ class Student extends Person
     /** Function does a reade into studant. */
     public function reade()
     {
-        $sql ="SELECT(s.idstu, s.stuenrolment, s.stuname, s.stuage,s.stuaddress,s.stuneighborhood,
-                 s.stucity, s.stustate,s.stucountry, s.stuzipcode, s.stusponsor,
-                 g.idgua, guaname, c.idcla, c.claname, c.claroom)
-                 FROM studant s join guardian g 
-                        on idstu = idgua
-                     class c join studant s
-                        on g.idgua = idcla;";
+        $sql ="SELECT
+                (
+                    s.idstu,
+                    s.stuenrolment,
+                    s.stuname,
+                    s.stuage,
+                    s.stuaddress,
+                    s.stuneighborhood,
+                    s.stucity,
+                    s.stustate,
+                    s.stucountry,
+                    s.stuzipcode,
+                    s.stusponsor,
+                    g.idgua,
+                    guaname,
+                    c.idcla,
+                    c.claname,
+                    c.claroom
+                 )
+                FROM
+                    studant s
+                JOIN guardian g ON
+                    idstu = idgua class c
+                JOIN studant s ON
+                    g.idgua = idcla;";
 
         
         $stmt = $pdo->prepare($sql);

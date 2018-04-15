@@ -1,5 +1,5 @@
 <ul id="menu" class="nav nav-pills nav-justified navbar-fixed-top"> 
-	<li role="presentation" class="active"><a href="index.php?page=begin">Inicio</a></li> 
+	<li role="presentation" class="active"><a href="index.php?page=begin.php">Inicio</a></li> 
 	<li role="presentation" class="dropdown">
 	   <a href="#" data-toggle="dropdown">Alunos <span class="caret"></span></a>
 		<ul class="dropdown-menu"> 
