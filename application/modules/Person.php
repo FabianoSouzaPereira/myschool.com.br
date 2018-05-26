@@ -3,24 +3,24 @@ namespace modules;
 
 abstract class Person
 {
-    public $idNumber; //RG
-    public  $ssn; //CPF
-    public  $firstName;
-    public  $lastName;
-    public  $MiddleName;
-    public  $age;
-    public  $address;
-    public  $nacionality;
-    public  $neighborhood;
-    public  $city;
-    public  $state;
-    public  $country;
-    public  $zipcode;
+    private $idNumber; //RG
+    private  $ssn; //CPF
+    private  $firstName;
+    private  $lastName;
+    private  $MiddleName;
+    private $age;
+    private  $address;
+    private  $nacionality;
+    private  $neighborhood;
+    private $city;
+    private $state;
+    private  $country;
+    private  $zipcode;
     
     
     abstract function post();
     abstract function update();
     abstract function delete();
-    abstract function reade();
+    abstract function read();
 }
 

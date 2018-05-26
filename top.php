@@ -3,20 +3,27 @@
 	<li role="presentation" class="dropdown">
 	   <a href="#" data-toggle="dropdown">Alunos <span class="caret"></span></a>
 		<ul class="dropdown-menu"> 
-			<li><a href="index.php?page=publics_students-list">Listar Alunos</a></li> 
-			<li><a href="index.php?page=publics_students-post">Cadastrar Alunos</a></li> 
-			<li><a href="index.php?page=publics_students-update">Editar Alunos</a></li> 
+			<li><a href="index.php?page=studentbody_view_studentReadView">Listar Alunos</a></li> 
+			<li><a href="index.php?page=studentbody_view_studentPostView">Cadastrar Alunos</a></li> 
+			<li><a href="index.php?page=studentbody_view_studentEditView">Editar Alunos</a></li> 
 			<li role="separator" class="divider"></li> 
 			<li><a href="index.php?pagina=page=publics_students-listar"></a></li> 
-			<li><a href="index.php?pagina=page=publics_students-delete">Excluir Alunos</a></li> 
+			<li><a href="index.php?pagina=studentbody_view_studentDeleteView">Excluir Alunos</a></li> 
 		</ul> 
 	</li> 
-	
-	<li role="presentation"><a href="index.php?page=produtos_listar">Produtos</a></li>  
+	<li role="presentation" class="dropdown">
+	   <a href="#" data-toggle="dropdown">Responsáveis <span class="caret"></span></a>
+		<ul class="dropdown-menu"> 
+			<li><a href="index.php?page=studentbody_view_guardianReadView">Listar Responsáveis</a></li> 
+			<li><a href="index.php?page=studentbody_view_guardianPostView">Cadastrar Responsável</a></li> 
+			<li><a href="index.php?page=studentbody_view_guardianEditView">Editar Responsável</a></li> 
+			<li role="separator" class="divider"></li> 
+			<li><a href="index.php?pagina=studentbody_view_guardianDeleteView">Excluir Responsável</a></li> 
+		</ul> 
+	</li> 
 	<li role="presentation"><a href="index.php?page=clientes_listar">Clientes</a></li>  
 	<li role="presentation"><a href="index.php?page=funcionarios_listar">Funcionários</a></li> 
 	<li role="presentation"><a href="index.php?page=vendas_listar">Vendas</a></li>
-	
 	<li role="presentation" class="dropdown">
 		<a href="#" data-toggle="dropdown">Localidades <span class="caret"></span></a>
 		<ul class="dropdown-menu"> 
@@ -27,7 +34,6 @@
 			<li><a href="index.php?pagina=cidades_listar">Listar Cidades</a></li> 
 		</ul> 
 	</li> 
-	
 	<li role="presentation" class="dropdown"> 
 		<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Relatórios <span class="caret"> </span> </a> 
 		<ul class="dropdown-menu"> 

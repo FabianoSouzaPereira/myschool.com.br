@@ -1,0 +1,3 @@
+<div>
+studentDeleteView.php
+</div>

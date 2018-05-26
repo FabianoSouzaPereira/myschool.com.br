@@ -8,7 +8,9 @@ error_reporting(E_ALL);
 
 date_default_timezone_set('America/Sao_Paulo');
 
-require 'functions.php';
+include_once 'application/dao/Connection.php';
+require_once 'functions.php';
+
 
 /* if ( $_SESSION['login'] = false){
     require 'login.php';
