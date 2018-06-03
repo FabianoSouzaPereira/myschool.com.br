@@ -8,10 +8,12 @@ include_once 'application/modules/Person.php';
 
 if (!empty($_POST)){
     $_SESSION['stuenrolment'] = $_POST['stuenrolment'];
+    $_SESSION['stuSSN'] = $_POST['stuSSN'];
+    $_SESSION['stuId'] = $_POST['stuId'];
     $_SESSION['stuname'] = $_POST['stuname'];
     $_SESSION['stuage'] = $_POST['stuage'];
-    $_SESSION['stuaddress'] = $_POST['stuaddress'];
     $_SESSION['stuDateofBirth'] = $_POST['stuDateofBirth'];
+    $_SESSION['stuaddress'] = $_POST['stuaddress'];
     $_SESSION['stuneighborhood'] = $_POST['stuneighborhood'];
     $_SESSION['stucity'] =  $_POST['stucity'];
     $_SESSION['stustate'] = $_POST['stustate'];
@@ -27,7 +29,8 @@ if (!empty($_POST)){
     $_SESSION['stuwhatsapp'] = $_POST['stuwhatsapp'];
     $_SESSION['stufacebook'] = $_POST['stufacebook'];
 $stu = new Student();
-$stu->post();
+//$stu->post();
+$stu->poststudentALL();
 header('location:index.php?page=studentbody_view_studentReadView');
 exit();
 
@@ -41,7 +44,15 @@ exit();
 <div class="panel-body">
     <div class="form-group">
         <label for="stuenrolment">Matricula</label>
-        <input type="text" name="stuenrolment" id="stuenrolment" value="<?php echo @$_POST['stuenrolment'];?>" class="form-control" placeholder="Digite seu nome completo" required autofocus>
+        <input type="text" name="stuenrolment" id="stuenrolment" value="<?php echo @$_POST['stuenrolment'];?>" class="form-control" placeholder="" required autofocus>
+    </div>
+    <div class="form-group">
+    	<label for="stuSSN">CPF</label>
+    	<input type="text" name="stuSSN" id="stuSSN" value="<?php echo @$_POST['stuSSN'];?>" class="form-control" >
+    </div>
+    <div class="form-group">
+    	<label for="stuId">RG</label>
+    	<input type="text" name="stuId" id="stuId" value="<?php echo @$_POST['stuId'];?>" class="form-control" >
     </div>
      <div class="form-group">
      	<label for="stuname">Nome</label>
@@ -79,10 +90,6 @@ exit();
         <label for="stuzipcode">CEP</label>
      	<input type="text" name="stuzipcode" id="stuzipcode"   value="<?php echo @$_POST['stuzipcode']; ?>" class="form-control" >
      </div>
- <!--     <div class="form-group">
-        <label for="stusponsor">Responsável</label>
-     	<input type="text" name="stusponsor" id="stusponsor"   value="<?php echo @$_POST['stusponsor']; ?>" class="form-control" >
-     </div> --> 
 	<div class="form-group">
 		<label for="stucellphone">Celular</label>
 		<input  type="text" name="stucellphone" id="stucellphone"   value="<?php echo @$_POST['stucellphone']; ?>" class="form-control">
@@ -112,7 +119,7 @@ exit();
 		<input  type="text" name="stuwhatsapp" id="stuwhatsapp"   value="<?php echo @$_POST['stuwhatsapp']; ?>" class="form-control">
 	</div>
 	<div class="form-group">
-		<label for="facebook">FaceBook</label>
+		<label for="stufacebook">FaceBook</label>
 		<input  type="text" name="stufacebook" id="stufacebook"   value="<?php echo @$_POST['stufacebook']; ?>" class="form-control">
 	</div>
 	<div class="form-group">

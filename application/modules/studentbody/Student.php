@@ -14,6 +14,8 @@ class Student extends Person
      private $idstudent=null;
      private $student=null;
      private $stuenrolment=null; // word in Portuguese of Brazil - matrícula
+     private $stuSSN=null;
+     private $stuId=null;
      private $stuname=null;
      private $stuage=null;
      private $stuDateofBirth=null;
@@ -25,139 +27,124 @@ class Student extends Person
      private $stucountry=null;
      private $stuzipcode=null;
      private $stusponsor=null; // word in Portuguese of Brazil - responsável
-     private $idstuEmail=null;
+     private $idstuemail=null;
      private $stuemail1=null;
      private $stuemail2=null;
      private $idstuSN=null;
      private $stutwitter=null;
      private $stuwhatsapp=null;
      private $stufacebook=null;
-     private $idstuPhone=null;
+     private $idstuphone=null;
      private $stucellphone=null;
      private $stuhomephone=null;
      private $stujobphone=null;
+     private $ret=null;
+     private $lastID=null;
 
-
-    /** Function does a post into studant. */
-    public function post()
-    {   
-        $this->setStuenrolment($_POST['stuenrolment']);
-        $this->setStuname($_POST['stuname']);
-        $this->setStuage($_POST['stuage']);
-        $this->setStuaddress($_POST['stuaddress']);
-        $this->setStuDateofBirth($_POST['stuDateofBirth']);
-        $this->setStuneighborhood($_POST['stuneighborhood']);
-        $this->setStucity($_POST['stucity']);
-        $this->setStustate($_POST['stustate']);
-        $this->setStucountry($_POST['stucountry']);
-        $this->setStuzipcode($_POST['stuzipcode']);
- //       $this->setStusponsor($_POST['stusponsor']);
-        $sql=null;
-        $sql2=null;
-        $sql3=null;
-        $sql4=null;
-        $status = "1";
-        
-       $sql ="INSERT INTO `myschool`.`student`("
-                ."`stuenrolment`,"
-                ."`stuname`,"
-                ."`stuage`,"
-                ."`stuDateofBirth`,"
-                ."`status`) "
-               ."VALUES (:stuenrolment,"
-                 .":stuname," 
-                 .":stuage,"
-                 .":stuDateofBirth,"
-                 .":status);";
-        
+     /** 
+      * This function call stored procedure that Read only partial information about one student by id;
+      * 
+      * @param $id 
+      * */
+     public function readstudent($id){
+       $query="call SELECTSTUDENTS($id);";  
        $stmt = $conn = new Connection();
-       $stmt = $conn->getInstance()->prepare($sql);
-       $stmt->bindParam(':stuenrolment', $this->stuenrolment, PDO::PARAM_STR);
-       $stmt->bindParam(':stuname', $this->stuname, PDO::PARAM_STR);
-       $stmt->bindParam(':stuage', $this->stuage, PDO::PARAM_STR);
-       $stmt->bindParam(':stuDateofBirth', $this->stuDateofBirth, PDO::PARAM_STR);
-       $stmt->bindParam(':status', $this->status, PDO::PARAM_STR);
-          
-        $stmt->execute(); 
-        
-        $lastID = $conn->getInstance()->lastInsertId();
-        
-        
-        $sql2 ="INSERT INTO `myschool`.`stuaddress`(`idstuaddress`,"
-                 ."`stuaddress`,"
-                 ."`stuneighborhood`,"
-                 ."`stucity`,"
-                 ."`stustate`,"
-                 ."`stucountry`,"
-                 ."`stuzipcode`) "
-                ."VALUES (:idstuaddress,"
-                  .":stuaddress,"
-                  .":stuneighborhood,"
-                  .":stucity,"
-                  .":stustate,"
-                  .":stucountry,"
-                  .":stuzipcode);";
-       
-        $stmt = $conn = new Connection();
-        $stmt = $conn->getInstance()->prepare($sql2);
-        $stmt->bindParam(':idstuaddress', $lastID, PDO::PARAM_INT);
-        $stmt->bindParam(':stuaddress', $this->stuaddress, PDO::PARAM_STR);
-        $stmt->bindParam(':stuneighborhood', $this->stuneighborhood, PDO::PARAM_STR);
-        $stmt->bindParam(':stucity', $this->stucity, PDO::PARAM_STR);
-        $stmt->bindParam(':stustate', $this->stustate, PDO::PARAM_STR);
-        $stmt->bindParam(':stucountry', $this->stucountry, PDO::PARAM_STR);
-        $stmt->bindParam(':stuzipcode', $this->stuzipcode, PDO::PARAM_STR);
- 
-        $stmt->execute();
-        
-        
-        $sql3 = "INSERT INTO `myschool`.`stuphones`("
-                    ."`idstuPhone`,"
-                    ."`stucellphone`,"
-                    ."`stuhomephone`,"
-                    ."`stujobphone`) "
-                 ."VALUES"
-                    ."(:idstuPhone,"
-                    .":stucellphone,"
-                    .":stuhomephone,"
-                    .":stujobphone);";
-        
-        $stmt = $conn = new Connection();
-        $stmt = $conn->getInstance()->prepare($sql3);
-        $stmt->bindParam(':idstuPhone', $lastID, PDO::PARAM_INT);
-        $stmt->bindParam(':stucellphone', $this->stucellphone, PDO::PARAM_STR);
-        $stmt->bindParam(':stuhomephone', $this->stuhomephone, PDO::PARAM_STR);
-        $stmt->bindParam(':stujobphone', $this->stujobphone, PDO::PARAM_STR);
-        
-        $stmt->execute();
-        
-       
-        $sql4 = "INSERT INTO `myschool`.`stusocial_network`("
-                    ."`idstuSN`,"
-                    ."`stutwitter`,"
-                    ."`stuwhatsapp`,"
-                    ."`stufacebook`) "
-                ."VALUES "
-                    ."(:idstuSN,"
-                    .":stutwitter,"
-                    .":stuwhatsapp,"
-                    .":stufacebook);";
-                              
-            $stmt = $conn = new Connection();
-            $stmt = $conn->getInstance()->prepare($sql4);
-            $stmt->bindParam(':idstuSN', $lastID, PDO::PARAM_INT);
-            $stmt->bindParam(':stutwitter', $this->stutwitter, PDO::PARAM_STR);
-            $stmt->bindParam(':stuwhatsapp', $this->stuwhatsapp, PDO::PARAM_STR);
-            $stmt->bindParam(':stufacebook', $this->stufacebook, PDO::PARAM_STR);
-            
-            $stmt->execute();
-        
-    }
+       $stmt = $conn->getInstance()->prepare($query);
+       if ($stmt->execute()) {
+           while ($raw=$stmt->fetchAll(PDO::FETCH_ASSOC)){
+               $this->setDados($raw);
+           }
+       }else {
+           echo "Erro: Não foi possível recuperar os dados do Aluno do banco de dados";
+       }
+     }
+     
+    /** This function call stored procedure that Read all information about one student by id;
+     *
+     * @param $id
+     * */
+     public function readstudentALL($id) {
+         $query = "call SELECTSTUDENTSALL($id);";
+         $stmt = $conn = new Connection();
+         $stmt = $conn->getInstance()->prepare($query);
+         if ($stmt->execute()) {
+             while ($raw=$stmt->fetchAll(PDO::FETCH_ASSOC)){
+                 $this->setDados($raw);
+             }
+         }else {
+             echo "Erro: Não foi possível recuperar os dados do Aluno do banco de dados";
+         }
+     }
+     
+     /** This function call stored procedure that Insert all information about one student; */
+     public function poststudentALL(){
+         $this->setStuenrolment($_POST['stuenrolment']);
+         $this->setStuSSN($_POST['stuSSN']);
+         $this->setStuId($_POST['stuId']);
+         $this->setStuname($_POST['stuname']);
+         $this->setStuage($_POST['stuage']);
+         $this->setStuDateofBirth($_POST['stuDateofBirth']);
+         $this->setStuaddress($_POST['stuaddress']);
+         $this->setStuneighborhood($_POST['stuneighborhood']);
+         $this->setStucity($_POST['stucity']);
+         $this->setStustate($_POST['stustate']);
+         $this->setStucountry($_POST['stucountry']);
+         $this->setStuzipcode($_POST['stuzipcode']);
+         $this->setStucellphone($_POST['stucellphone']);
+         $this->setStuhomephone($_POST['stuhomephone']);
+         $this->setStujobphone($_POST['stujobphone']);
+         $this->setStuemail1($_POST['stuemail1']);
+         $this->setStuemail2($_POST['stuemail2']);
+         $this->setStutwitter($_POST['stutwitter']);
+         $this->setStuwhatsapp($_POST['stuwhatsapp']);
+         $this->setStufacebook($_POST['stufacebook']);
+         
+         $query="CALL INSERTSTUDENTS($this->stuenrolment,$this->stuSSN,$this->stuId,$this->stuname,$this->stuage,
+         $this->stuDateofBirth,$this->stuaddress,$this->stuneighborhood,$this->stucity,$this->stustate,$this->stucountry,
+         $this->stuzipcode,$this->stucellphone,$this->stuhomephone,$this->stujobphone,$this->stuemail1,$this->stuemail2,
+         $this->stutwitter,$this->stuwhatsapp,$this->stufacebook);";
+         $stmt = $conn = new Connection();
+         $stmt = $conn->getInstance()->prepare($query);
+         $stmt->execute();
+     }
+     
+     
+     public function updatestudent(){
+         $this->setStuenrolment($_POST['stuenrolment']);
+         $this->setStuSSN($_POST['stuSSN']);
+         $this->setStuId($_POST['stuId']);
+         $this->setStuname($_POST['stuname']);
+         $this->setStuage($_POST['stuage']);
+         $this->setStuDateofBirth($_POST['stuDateofBirth']);
+         $this->setStuaddress($_POST['stuaddress']);
+         $this->setStuneighborhood($_POST['stuneighborhood']);
+         $this->setStucity($_POST['stucity']);
+         $this->setStustate($_POST['stustate']);
+         $this->setStucountry($_POST['stucountry']);
+         $this->setStuzipcode($_POST['stuzipcode']);
+         $this->setStucellphone($_POST['stucellphone']);
+         $this->setStuhomephone($_POST['stuhomephone']);
+         $this->setStujobphone($_POST['stujobphone']);
+         $this->setStuemail1($_POST['stuemail1']);
+         $this->setStuemail2($_POST['stuemail2']);
+         $this->setStutwitter($_POST['stutwitter']);
+         $this->setStuwhatsapp($_POST['stuwhatsapp']);
+         $this->setStufacebook($_POST['stufacebook']);
+         
+         $query = "call EDITSTUDENTS($this->stuenrolment,$this->stuSSN,$this->stuId,$this->stuname,$this->stuage,
+         $this->stuDateofBirth,$this->stuaddress,$this->stuneighborhood,$this->stucity,$this->stustate,$this->stucountry,
+         $this->stuzipcode,$this->stucellphone,$this->stuhomephone,$this->stujobphone $this->stuemail1,$this->stuemail2,
+         $this->stutwitter,$this->stuwhatsapp,$this->stufacebook);";
+         $stmt = $conn = new Connection();
+         $stmt = $conn->getInstance()->prepare($query);
+         $stmt->execute();
+     }
+     
 
     /** Function does a update into studant. */
     public function update()
     {
-        $sql ="UPDATE school SET `myschool`.`studant`("
+        $sql ="UPDATE  `myschool`.`studant` SET "
                  ."`stuenrolment`= :stuenrolment,"
                  ."`stuname`= :stuname,"
                  ."`stuage`= :stuage,"
@@ -167,7 +154,7 @@ class Student extends Person
                  ."`stustate`= :stustate,"
                  ."`stucountry`= :stucountry,"
                  ."`stuzipcode`= :stuzipcode,"
-                 ."`stusponsor`= :stusponsor) "
+                 ."`stusponsor`= :stusponsor "
                ."WHERE stuenrolment = :stuenrolment);";
         
         $stmt = $pdo->prepare($sql);
@@ -183,167 +170,37 @@ class Student extends Person
         $stmt->bindParam(':stusponsor', $_POST['stusponsor'], PDO::PARAM_STR);
         
         $stmt->execute(); 
-    }
-
-    /**
-     * Function does a reade from studant.
-     */
-    public function read()
-    {
-        $sql = "SELECT " 
-                    . "s.`idStudent`," 
-                    . "s.`stuenrolment`," 
-                    . "s.`stuname`," 
-                    . "s.`stuage`," 
-                    . "s.`stuDateofBirth`," 
-                    . "s.`status`," 
-                    . "a.`idstuaddress`," 
-                    . "a.`stuaddress`," 
-                    . "a.`stuneighborhood`," 
-                    . "a.`stucity`," 
-                    . "a.`stustate`," 
-                    . "a.`stucountry`," 
-                    . "a.`stuzipcode`," 
-                    . "p.`idstuPhone`, " 
-                    . "p.`stucellphone`," 
-                    . "p.`stuhomephone`," 
-                    . "p.`stujobphone`, " 
-                    . "e.`idstuemail`," 
-                    . "e.`stuemail1`," 
-                    . "e.`stuemail2`, " 
-                    . "n.`idstuSN`," 
-                    . "n.`stutwitter`,"
-                    . "n.`stuwhatsapp`,"
-                    . "n.`stufacebook` " 
-            ."FROM "
-                ."myschool.`student` AS s "
-                ."JOIN `myschool`.`stuaddress` AS a "
-                    ."ON s.`idstudent` = a.`idstuaddress` "
-                ."JOIN  `myschool`.`stuphones` AS p "
-                    ."ON a.`idstuaddress` = p.`idstuphone` "
-                ."JOIN  `myschool`.`stuemail` AS e "
-                    ."ON p.idstuphone = e.`idstuEmail` "
-                ."JOIN  `myschool`.`stusocial_network` AS n "
-                    ."ON e.`idstuEmail` = n.`idstuSN`;";
-
-        $stmt = $conn = new Connection();
-        $stmt = $conn->getInstance()->prepare($sql);
-        if ($stmt->execute()){
-            while($raw= $stmt->fetch(pdo::FETCH_ASSOC)) { 
-                 $this->setIdStudent($raw['idStudent']);
-                 $this->setStuenrolment($raw['stuenrolment']);
-                 $this->setStuname($raw['stuname']);
-                 $this->setStuage($raw['stuage']);    
-                 $this->setStuDateofBirth($raw['stuDateofBirth']);
-                 $this->setStatus($raw['status']);
-                 $this->setStuaddress($raw['idstuaddress']);
-                 $this->setStuneighborhood($raw['stuneighborhood']);
-                 $this->setStucity($raw['stucity']);
-                 $this->setStustate($raw['stustate']);
-                 $this->setStucountry($raw['stucountry']);
-                 $this->setStuzipcode($raw['stuzipcode']);
-                 $this->setIdstuPhone($raw['idstuPhone']);
-                 $this->setStucellphone($raw['stucellphone']);
-                 $this->setStuHomephone($raw['stuhomephone']);
-                 $this->setStujobphone($raw['stujobphone']);
-                 $this->setIdstuEmail($raw['idstuemail']);
-                 $this->setStuemail1($raw['stuemail1']);
-                 $this->setStuemail2($raw['stuemail1']);
-                 $this->setIdstuSN($raw['idstuSN']);
-                 $this->setStutwitter($raw['stutwitter']);
-                 $this->setStuwhatsapp($raw['stuwhatsapp']);
-                 $this->setStufacebook($raw['stufacebook']);
-            }
-        }else {
-            echo "Erro: Não foi possível recuperar os dados do Aluno do banco de dados";
-        }
-    }
-
-    /** Function does a delete into studant. */
-    public function delete()
-    {
-        $sql = "DELETE FROM `myschool`.student WHERE stuenrolment =  :stuenrolment;";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':stuenrolment', $_POST['stuenrolment'], PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    /**
-     * Function does a read by id from studant.
-     */
-    public function readByid($id)
-    {
-        $sql = "SELECT " 
-                ."s.`idStudent`," 
-                ."s.`stuenrolment`," 
-                ."s.`stuname`," 
-                ."s.`stuage`," 
-                ."s.`stuDateofBirth`,"
-                ."s.`status`,"
-                ."a.`idstuaddress`," 
-                ."a.`stuaddress`," 
-                ."a.`stuneighborhood`," 
-                ."a.`stucity`," 
-                ."a.`stustate`," 
-                ."a.`stucountry`," 
-                ."a.`stuzipCode`," 
-                ."p.`idstuphone`, " 
-                ."p.`stucellphone`," 
-                ."p.`stuhomephone`," 
-                ."p.`stujobphone`, " 
-                ."e.`idstuemail`," 
-                ."e.`stuemail1`," 
-                ."e.`stuemail2`, " 
-                ."n.`idstuSN`," 
-                ."n.`stutwitter`,"
-                ."n.`stuwhatsapp`,"
-                ."n.`stufacebook` " 
-            ."FROM "
-                    ."student AS s " 
-                    ."JOIN `stuaddress` AS a " 
-                        ."ON s.`idstudent` = a.`idstuaddress` " 
-                    ."JOIN `stuphones` AS p " 
-                        ."ON a.`idstuaddress` = p.`idstuphone` " 
-                    ."JOIN `stuemail` AS e " 
-                        . "ON p.idstuphone = e.`idstuEmail` " 
-                    ."JOIN `stusocial_network` AS n " 
-                        ."ON e.`idstuEmail` = n.`idstuSN` " 
-             ."WHERE s.idstudent = :id;";
-        
-        $stmt = $conn = new Connection();
-        $stmt = $conn->getInstance()->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        if ($stmt->execute()) {
-            while ($raw=$stmt->fetchAll(pdo::FETCH_OBJ)) {
-                
-                $this->setStuenrolment($raw[0]->stuenrolment);
-                $this->setStuname($raw[0]->stuname);
-                $this->setStuage($raw[0]->stuage);
-                $this->setStuDateofBirth($raw[0]->stuDateofBirth);
-                $this->setStatus($raw[0]->status);
-                $this->setStuaddress($raw[0]->stuaddress);
-                $this->setStuneighborhood($raw[0]->stuneighborhood);
-                $this->setStucity($raw[0]->stucity);
-                $this->setStustate($raw[0]->stustate);
-                $this->setStucountry($raw[0]->stucountry);
-                $this->setStuzipcode($raw[0]->stuzipCode);
-                $this->setIdstuPhone($raw[0]->idstuPhone);
-                $this->setCellphone($raw[0]->cellphone);
-                $this->setHome($raw[0]->home);
-                $this->setJob($raw[0]->job);
-                $this->setIdstuEmail($raw[0]->idstuemail);
-                $this->setEmail1($raw[0]->email1);
-                $this->setEmail2($raw[0]->email2);
-                $this->setIdstuSN($raw[0]->idstuSN);
-                $this->setTwitter($raw[0]->twitter);
-                $this->setWhatsapp($raw[0]->whatsapp);
-                $this->setFacebook($raw[0]->facebook);
-            }
-        } else {
-            echo "Erro: Não foi possível recuperar os dados do Aluno do banco de dados";
-                                                                                                                                                        }
-    }
+    } 
     
+    public function updateStuaddress(){
+        
+        $sql2 ="UPDATE `myschool`.`stuaddress` SET "
+                    ."`stuaddress` = :stuaddress,"
+                    ."`stuneighborhood` = :stuneighborhood,"
+                    ."`stucity` = :stucity,"
+                    ."`stustate` = :stustate,"
+                    ."`stucountry` = :stucountry,"
+                    ."`stuzipcode` = :stuzipcode "
+                ."WHERE idstuaddress = :idstuaddress;";
+                  
+               $stmt = $conn = new Connection();
+               $stmt = $conn->getInstance()->prepare($sql2);
+               $stmt->bindParam(':idstuaddress', $idstuaddress, PDO::PARAM_INT);
+               $stmt->bindParam(':stuaddress', $this->stuaddress, PDO::PARAM_STR);
+               $stmt->bindParam(':stuneighborhood', $this->stuneighborhood, PDO::PARAM_STR);
+               $stmt->bindParam(':stucity', $this->stucity, PDO::PARAM_STR);
+               $stmt->bindParam(':stustate', $this->stustate, PDO::PARAM_STR);
+               $stmt->bindParam(':stucountry', $this->stucountry, PDO::PARAM_STR);
+               $stmt->bindParam(':stuzipcode', $this->stuzipcode, PDO::PARAM_STR);
+                                                          
+               $stmt->execute();
+    }
+
+    public function updateStuphones(){
+        //todo
+    }
+
+ 
     /**
      * @return PDOStatement
      */
@@ -364,8 +221,7 @@ class Student extends Person
       $reading = $this->read();
        return $reading;
     }
-    
-    
+       
     /**
      * @return mixed
      */
@@ -390,6 +246,36 @@ class Student extends Person
         return $this->stuenrolment;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStuSSN()
+    {
+        return $this->stuSSN;
+    }
+
+    /**
+     * @param mixed $stuSSN
+     */
+    public function setStuSSN($stuSSN)
+    {
+        $this->stuSSN = $stuSSN;
+    }
+    
+    /**
+     * @return mixed $stuId
+     */
+    public function getStuId(){
+        return $this->stuId;
+    }
+    
+    /**
+     * @param mixed $stuId 
+     */
+    public function setStuId($stuId){
+        $this->stuId = $stuId;
+    }
+    
     /**
      * @return mixed
      */
@@ -573,12 +459,13 @@ class Student extends Person
     {
         $this->stusponsor = $stusponsor;
     }
+    
     /**
      * @return mixed
      */
-    public function getIdstuEmail()
+    public function getIdstuemail()
     {
-        return $this->idstuEmail;
+        return $this->idstuemail;
     }
 
     /**
@@ -632,9 +519,9 @@ class Student extends Person
     /**
      * @return mixed
      */
-    public function getIdstuPhone()
+    public function getIdstuphone()
     {
-        return $this->idstuPhone;
+        return $this->idstuphone;
     }
 
     /**
@@ -754,5 +641,15 @@ class Student extends Person
     public function setStujobphone($stujobphone)
     {
         $this->stujobphone = $stujobphone;
-    }  
+    }
+    public function read()
+    {}
+
+    public function post()
+    {}
+
+    public function delete()
+    {}
+  
 }
+

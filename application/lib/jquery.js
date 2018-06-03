@@ -1,3 +1,4 @@
+function hidden(){
 $(document).ready(function(){
 	$("td").find('dd').hide().end().find('dt').click(function() {
 		 var info = $(this).next();
@@ -8,4 +9,13 @@ $(document).ready(function(){
 		 }
 	})
 });
+}
 
+function getIdtable(){
+$(document).ready(function() {
+$('table').click(function () { 
+	var id = $(this).attr("id");
+		alert(id);
+		});
+	});
+}

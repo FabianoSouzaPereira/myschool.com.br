@@ -37,8 +37,8 @@ function viewpage($v){
     return $ret;
 }
 
-/** retira os '&' do vet[2]; que pode conter variáveis vindas da url; 
- * @param 
+/** pick up '&' from vet[2]; Could've variables from url; 
+ * @param $par
  * */
 function cut_param($param){
     if(isset($param) && $param !== Null){
