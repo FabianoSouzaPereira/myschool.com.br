@@ -12,7 +12,8 @@ include_once 'application/modules/Person.php';
 		<h3>Lista de Estudantes</h3>
 	</div>
 <div class="panel-body">	
-		<a href="index.php?page" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"> </span> Novo Aluno</a>
+		<a href="index.php?page=studentbody_view_studentPostView" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"> </span> Novo Aluno</a>
+		<input>
 <br><br>
 <table class="listagem table table-bordered table-striped table-responsive">
 	<thead>
@@ -31,7 +32,6 @@ include_once 'application/modules/Person.php';
 </thead>
 	<tbody>
 	<?php $stu = new Student(); 
-	      $gua = new Guardian();
 
     try{
         if(isset($id) && $id > 0){

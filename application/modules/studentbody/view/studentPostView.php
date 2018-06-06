@@ -7,6 +7,7 @@ include_once 'application/modules/studentbody/Guardian.php';
 include_once 'application/modules/Person.php';
 
 if (!empty($_POST)){
+ $stu = new Student();
     $_SESSION['stuenrolment'] = $_POST['stuenrolment'];
     $_SESSION['stuSSN'] = $_POST['stuSSN'];
     $_SESSION['stuId'] = $_POST['stuId'];
@@ -19,7 +20,6 @@ if (!empty($_POST)){
     $_SESSION['stustate'] = $_POST['stustate'];
     $_SESSION['stucountry'] = $_POST['stucountry'];
     $_SESSION['stuzipcode'] = $_POST['stuzipcode'];
-  //  $_SESSION['stusponsor'] = $_POST['stusponsor'];
     $_SESSION['stucellphone'] = $_POST['stucellphone'];
     $_SESSION['stuhomephone'] = $_POST['stuhomephone'];
     $_SESSION['stujobphone'] = $_POST['stujobphone']; 
@@ -28,7 +28,27 @@ if (!empty($_POST)){
     $_SESSION['stutwitter'] = $_POST['stutwitter'];
     $_SESSION['stuwhatsapp'] = $_POST['stuwhatsapp'];
     $_SESSION['stufacebook'] = $_POST['stufacebook'];
-$stu = new Student();
+    $stu->setStuenrolment($_POST['stuenrolment']);
+    $stu->setStuSSN($_POST['stuSSN']);
+    $stu->setStuId($_POST['stuId']);
+    $stu->setStuname($_POST['stuname']);
+    $stu->setStuage($_POST['stuage']);
+    $stu->setStuDateofBirth($_POST['stuDateofBirth']);
+    $stu->setStuaddress($_POST['stuaddress']);
+    $stu->setStuneighborhood($_POST['stuneighborhood']);
+    $stu->setStucity($_POST['stucity']);
+    $stu->setStustate($_POST['stustate']);
+    $stu->setStucountry($_POST['stucountry']);
+    $stu->setStuzipcode($_POST['stuzipcode']);
+    $stu->setStucellphone($_POST['stucellphone']);
+    $stu->setStuhomephone($_POST['stuhomephone']);
+    $stu->setStujobphone($_POST['stujobphone']);
+    $stu->setStuemail1($_POST['stuemail1']);
+    $stu->setStuemail2($_POST['stuemail2']);
+    $stu->setStutwitter($_POST['stutwitter']);
+    $stu->setStuwhatsapp($_POST['stuwhatsapp']);
+    $stu->setStufacebook($_POST['stufacebook']);
+    $stu = new Student();
 //$stu->post();
 $stu->poststudentALL();
 header('location:index.php?page=studentbody_view_studentReadView');

@@ -1,6 +1,7 @@
 <?php
 namespace modules\studentbody;
 
+use Exception;
 use PDO;
 use PDOStatement;
 use modules\Person;
@@ -64,20 +65,28 @@ class Student extends Person
      * @param $id
      * */
      public function readstudentALL($id) {
-         $query = "call SELECTSTUDENTSALL($id);";
-         $stmt = $conn = new Connection();
-         $stmt = $conn->getInstance()->prepare($query);
-         if ($stmt->execute()) {
-             while ($raw=$stmt->fetchAll(PDO::FETCH_ASSOC)){
-                 $this->setDados($raw);
+         try{
+             $query = "call SELECTSTUDENTSALL($id);";
+             $stmt = $conn = new Connection();
+             $stmt = $conn->getInstance()->prepare($query);
+             if ($stmt->execute()) {
+                 while ($raw=$stmt->fetchAll(PDO::FETCH_ASSOC)){
+                     $this->setDados($raw);
+                 }
+             }else {
+                 echo "Erro: Não foi possível recuperar os dados do Aluno do banco de dados";
              }
-         }else {
-             echo "Erro: Não foi possível recuperar os dados do Aluno do banco de dados";
-         }
+         }catch (Exception $e) {
+             echo $e->getMessage();
+             exit;
+            }
      }
+     
      
      /** This function call stored procedure that Insert all information about one student; */
      public function poststudentALL(){
+    //   try {
+  
          $this->setStuenrolment($_POST['stuenrolment']);
          $this->setStuSSN($_POST['stuSSN']);
          $this->setStuId($_POST['stuId']);
@@ -99,13 +108,14 @@ class Student extends Person
          $this->setStuwhatsapp($_POST['stuwhatsapp']);
          $this->setStufacebook($_POST['stufacebook']);
          
-         $query="CALL INSERTSTUDENTS($this->stuenrolment,$this->stuSSN,$this->stuId,$this->stuname,$this->stuage,
-         $this->stuDateofBirth,$this->stuaddress,$this->stuneighborhood,$this->stucity,$this->stustate,$this->stucountry,
-         $this->stuzipcode,$this->stucellphone,$this->stuhomephone,$this->stujobphone,$this->stuemail1,$this->stuemail2,
-         $this->stutwitter,$this->stuwhatsapp,$this->stufacebook);";
-         $stmt = $conn = new Connection();
-         $stmt = $conn->getInstance()->prepare($query);
-         $stmt->execute();
+         $query="CALL INSERTSTUDENTSALL('{$this->getStuenrolment()}','{$this->getStuSSN()}','{$this->getStuId()}','{$this->getStuname()}','{$this->getStuage()}','{$this->getStuDateofBirth()}','{$this->getStuaddress()}','{$this->getStuneighborhood()}','{$this->getStucity()}','{$this->getStustate()}','{$this->getStucountry()}','{$this->getStuzipcode()}','{$this->getStucellphone()}','{$this->getStuhomephone()}','{$this->getStujobphone()}','{$this->getStuemail1()}','{$this->getStuemail2()}','{$this->getStutwitter()}','{$this->getStuwhatsapp()}','{$this->getStufacebook()}');";
+            $stmt = $conn = new Connection();
+            $stmt = $conn->getInstance()->prepare($query);
+            $stmt->execute();
+  //     } catch (Exception $e) {
+ //          echo $e->getMessage();
+  //         exit;
+  //     }
      }
      
      
@@ -642,6 +652,7 @@ class Student extends Person
     {
         $this->stujobphone = $stujobphone;
     }
+    
     public function read()
     {}
 

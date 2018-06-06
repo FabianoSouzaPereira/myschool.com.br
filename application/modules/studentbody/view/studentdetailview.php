@@ -18,7 +18,7 @@ include_once 'application/modules/Person.php';
 
 <form action="" method="post"  class="panel panel-warning" enctype="multipart-form-data">
 <div class="panel-heading">
-	<h1>Cadastro de Alunos</h1>
+	<h1>Detelhe sobre o Aluno</h1>
 </div>
   <div class="panel-body">
     <div class="form-group">
