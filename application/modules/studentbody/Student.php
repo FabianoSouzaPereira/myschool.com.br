@@ -119,32 +119,29 @@ class Student extends Person
      }
      
      
-     public function updatestudent(){
-         $this->setStuenrolment($_POST['stuenrolment']);
-         $this->setStuSSN($_POST['stuSSN']);
-         $this->setStuId($_POST['stuId']);
-         $this->setStuname($_POST['stuname']);
-         $this->setStuage($_POST['stuage']);
-         $this->setStuDateofBirth($_POST['stuDateofBirth']);
-         $this->setStuaddress($_POST['stuaddress']);
-         $this->setStuneighborhood($_POST['stuneighborhood']);
-         $this->setStucity($_POST['stucity']);
-         $this->setStustate($_POST['stustate']);
-         $this->setStucountry($_POST['stucountry']);
-         $this->setStuzipcode($_POST['stuzipcode']);
-         $this->setStucellphone($_POST['stucellphone']);
-         $this->setStuhomephone($_POST['stuhomephone']);
-         $this->setStujobphone($_POST['stujobphone']);
-         $this->setStuemail1($_POST['stuemail1']);
-         $this->setStuemail2($_POST['stuemail2']);
-         $this->setStutwitter($_POST['stutwitter']);
-         $this->setStuwhatsapp($_POST['stuwhatsapp']);
-         $this->setStufacebook($_POST['stufacebook']);
+     public function updatestudentALL(){
+//          $this->setStuenrolment($_POST['stuenrolment']);
+//          $this->setStuSSN($_POST['stuSSN']);
+//          $this->setStuId($_POST['stuId']);
+//          $this->setStuname($_POST['stuname']);
+//          $this->setStuage($_POST['stuage']);
+//          $this->setStuDateofBirth($_POST['stuDateofBirth']);
+//          $this->setStuaddress($_POST['stuaddress']);
+//          $this->setStuneighborhood($_POST['stuneighborhood']);
+//          $this->setStucity($_POST['stucity']);
+//          $this->setStustate($_POST['stustate']);
+//          $this->setStucountry($_POST['stucountry']);
+//          $this->setStuzipcode($_POST['stuzipcode']);
+//          $this->setStucellphone($_POST['stucellphone']);
+//          $this->setStuhomephone($_POST['stuhomephone']);
+//          $this->setStujobphone($_POST['stujobphone']);
+//          $this->setStuemail1($_POST['stuemail1']);
+//          $this->setStuemail2($_POST['stuemail2']);
+//          $this->setStutwitter($_POST['stutwitter']);
+//          $this->setStuwhatsapp($_POST['stuwhatsapp']);
+//          $this->setStufacebook($_POST['stufacebook']);
          
-         $query = "call EDITSTUDENTS($this->stuenrolment,$this->stuSSN,$this->stuId,$this->stuname,$this->stuage,
-         $this->stuDateofBirth,$this->stuaddress,$this->stuneighborhood,$this->stucity,$this->stustate,$this->stucountry,
-         $this->stuzipcode,$this->stucellphone,$this->stuhomephone,$this->stujobphone $this->stuemail1,$this->stuemail2,
-         $this->stutwitter,$this->stuwhatsapp,$this->stufacebook);";
+         $query = "call EDITSTUDENTS('{$this->getIdstudent()}','{$this->getStuname()}','{$this->getStuage()}','{$this->getStuDateofBirth()}','{$this->getStuaddress()}','{$this->getStuneighborhood()}','{$this->getStucity()}','{$this->getStustate()}','{$this->getStucountry()}','{$this->getStuzipcode()}','{$this->getStucellphone()}','{$this->getStuhomephone()}','{$this->getStujobphone()}','{$this->getStuemail1()}','{$this->getStuemail2()}','{$this->getStutwitter()}','{$this->getStuwhatsapp()}','{$this->getStufacebook()}');";
          $stmt = $conn = new Connection();
          $stmt = $conn->getInstance()->prepare($query);
          $stmt->execute();

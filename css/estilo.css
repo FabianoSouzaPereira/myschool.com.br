@@ -20,16 +20,48 @@
 	padding:2%;
 }
 
-.panel .panel-body{
-	box-shadow: 5px 3px 5px #E9E9E9;
-} 
+.panel .panel-body{	box-shadow: 5px 3px 5px #E9E9E9; } 
 
-.listagem tbody tr:hover td{
-	background: #d6c4ab;
-}
+.listagem tbody tr:hover td{ background: #d6c4ab;}
 
-#login{
-	width: 30%;
-	margin:0 auto;
-	margin-top: 10%;
-}
+#login{	width: 30%;	margin:0 auto;	margin-top: 10%;}
+
+#matricula{float: left;; width: 15%; margin-left: 10px;padding-top: 10px;}
+#matricula label,input{width:100%;}
+#cpf{float: left; width: 15%; margin-left: 4px; padding-top: 10px;}
+#cpf input, label{width: 100%;}
+#rg{float: left; width: 15%; margin-left: 4px;padding-top: 10px;}
+#rg label,input{width: 100%;}
+#idade{float: left; width: 15%; margin-left: 10px;padding-top: 5px;}
+#idade label,input{width: 100%;}
+#nascimento{float: left; width: 15%; margin-left: 20px;padding-top: 5px;}
+#nascimento label,input{width: 100%;}
+#celular{float: left; width: 10%; margin-left: 10px;}
+#casa{float: left; width: 10%; margin-left: 10px;}
+#trabalho{float: left; width: 12%; margin-left: 10px;}
+#trabalho label{width:100%;}
+#cep{float: left; width: 10%; margin-left: 10px;padding-top: 5px;}
+#cep input{width:100%;}
+#bairro{}
+#estado{}
+/*div[id~=trabalho]{width:30%;}*/
+div[id~=estado]{ padding-botton: 15px;}
+
+image[alt=foto3x4]{width: 159px; height:191px; border: solid;}
+#foto3x4{ float:right; width: 159px; height:191px; margin-right:2%; border: solid;}
+
+.sidebyside{ display: table; width: 100%; }
+
+.divleft{float: left; width: 48%; margin-left:10px;	padding-top: 5px;}
+
+.divleft .sideleft{	width: 100%;}
+
+.divright{margin-left: 50%;	width: 48%;	padding-top: 5px;}
+
+.divright .sideright{ width: 100%; }
+
+.submitting{float: left; width: 100%;height:60px; margin-top:10px;}
+
+.submitting .left{float: left; margin-left:40%; margin-top:10px;}
+
+.submitting .right{	margin-left: 1%; margin-top:10px; }

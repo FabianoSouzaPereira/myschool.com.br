@@ -1,6 +1,6 @@
 <?php
 use modules\studentbody\Student;
-use modules\studentbody\Guardian;
+
 include_once 'init.php';
 include_once 'application/modules/studentbody/Student.php';
 include_once 'application/modules/studentbody/Guardian.php';
@@ -53,6 +53,7 @@ include_once 'application/modules/Person.php';
                         echo "<td>",$item,"</td>";
                     }
                     echo "<td><a href='index.php?page=studentbody_view_studentdetailview&id=$id' class='btn btn-primary'><span class='glyphicon glyphicon-plus'></span></a></td></tr>";
+                    echo "<td><a href='index.php?page=studentbody_view_studentEditview&id=$id' class='btn btn-primary'><span class='glyphicon glyphicon-change'></span></a></td></tr>";
                 }else {
                     echo $data,"</br>";
                 }
@@ -67,7 +68,7 @@ include_once 'application/modules/Person.php';
 	</tbody>
 	<tfoot>
 		<tr>
-			<th colspan="9" class="text-center"><?php echo date('d/m/Y h:i:s'); ?></th>
+			<th colspan="10" class="text-center"><?php echo date('d/m/Y h:i:s'); ?></th>
 		</tr>
 	</tfoot>
  </table>
