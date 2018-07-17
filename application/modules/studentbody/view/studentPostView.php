@@ -61,6 +61,7 @@ exit();
     <div class="panel-heading">
     	<h1>Cadastro de Alunos</h1>
     </div>
+
 <div class="form-group">
     <div id="matricula">
         <label for="stuenrolment">Matricula</label>
@@ -74,30 +75,72 @@ exit();
     	<label for="stuId">RG</label>
     	<input type="text" name="stuId" id="stuId" value="<?php echo @$_POST['stuId'];?>" >
     </div>
-    <div id="foto3x4">
-    	<img alt="foto3x4" src="" >
+    <div id="foto3X4">
+    <style>
+  .thumb {
+    height: 220px;
+    border: 1px solid #000;
+    margin: 0px 0px 0 100px;
+  }
+</style>
+<output id="list"></output>
+   		<input type="file" id="files" name="files[]"  value="<?php echo @$_POST['stuPicture'];?>">
+   			
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+			image1 = e.target.result;
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+   </div>
+    <div class="divleft">
+          <label for="stuname">Nome</label>
+          <input type="text" name="stuname" id="stuname" value="<?php echo @$_POST['stuname'];?>" class="sideleft" >
     </div>
-     <div class="divleft">
-     	<label for="stuname">Nome</label>
-     	<input type="text" name="stuname" id="stuname" value="<?php echo @$_POST['stuname'];?>" class="sideleft">
-     </div>
-     <div  id="idade">
+    <div  id="idade"   class="divleft">
      	<label for="stuage">idade</label>
      	<input type="text" name="stuage" id="stuage" value="<?php echo @$_POST['stuage']; ?>" >
-     </div>
-     <div id="nascimento">
-     	<label for="stuDateofBirth">data Nascimento</label>
-     	<input type="text" name="stuDateofBirth" id="stuDateofBirth" value="<?php echo @$_POST['stuDateofBirth']; ?>">
      </div>
      <div class="divleft">
         <label for="stuaddress">Endereço</label>
      	<input type="text" name="stuaddress" id="stuaddress"  value="<?php echo @$_POST['stuaddress']; ?>"  class="sideleft">
      </div>
+     <div id="nascimento"  class="divleft">
+     	<label for="stuDateofBirth">data Nascimento</label>
+     	<input type="text" name="stuDateofBirth" id="stuDateofBirth" value="<?php echo @$_POST['stuDateofBirth']; ?>">
+     </div>
      <div class="divleft" id="bairro">
      	<label for="stuneighborhood">Bairro</label>
      	<input type="text" name="stuneighborhood" id="stuneighborhood"  value="<?php echo @$_POST['stuneighborhood']; ?>"  class="sideleft">
      </div>
-     <div class="divleft">
+     <div id="cidade" class="divleft">
        	<label for="stucity">Cidade</label>
      	<input type="text" name="stucity" id="stucity"   value="<?php echo @$_POST['stucity']; ?>"  class="sideleft">
      </div>

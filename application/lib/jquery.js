@@ -19,3 +19,11 @@ $('table').click(function () {
 		});
 	});
 }
+
+function pickupfoto(){
+	$(document).ready(function(){
+		$('#foto3x4').click(function()){
+			
+		}
+	}
+}

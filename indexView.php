@@ -10,6 +10,7 @@
     <script src="bootstrap/js/jquery-1.12.4.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="application/lib/jquery.js"></script>
+
 </head>
 <body>
 	    <?php include "top.php"; ?>

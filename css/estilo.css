@@ -26,42 +26,50 @@
 
 #login{	width: 30%;	margin:0 auto;	margin-top: 10%;}
 
-#matricula{float: left;; width: 15%; margin-left: 10px;padding-top: 10px;}
+#matricula{float: left;; width: 16%;height:60px; margin-left: 10px;padding-top: 10px;}
 #matricula label,input{width:100%;}
-#cpf{float: left; width: 15%; margin-left: 4px; padding-top: 10px;}
+#matricula input{height:30px;}
+#cpf{float: left; width: 16%;height:60px; margin-left: 4px; padding-top: 10px;}
 #cpf input, label{width: 100%;}
-#rg{float: left; width: 15%; margin-left: 4px;padding-top: 10px;}
+#cpf input{height:30px;}
+#rg{float: left; width: 16%;height:60px; margin-left: 4px;padding-top: 10px;}
 #rg label,input{width: 100%;}
-#idade{float: left; width: 15%; margin-left: 10px;padding-top: 5px;}
+#rg  input{height:30px;}
+#idade{float: left; width: 15%;height:60px; margin-left: 10px;padding-top: 15px;}
 #idade label,input{width: 100%;}
-#nascimento{float: left; width: 15%; margin-left: 20px;padding-top: 5px;}
+#idade input{height:30px;}
+#nascimento{float: left; width: 15%; height:60px; margin-left: 10px;padding-top: 15px;}
 #nascimento label,input{width: 100%;}
+#nascimento input{height:30px;}
 #celular{float: left; width: 10%; margin-left: 10px;}
 #casa{float: left; width: 10%; margin-left: 10px;}
 #trabalho{float: left; width: 12%; margin-left: 10px;}
 #trabalho label{width:100%;}
-#cep{float: left; width: 10%; margin-left: 10px;padding-top: 5px;}
+#cep{float: left; width: 10%; margin-left: 10px;padding-top: 15px;}
 #cep input{width:100%;}
-#bairro{}
-#estado{}
+#bairro{padding-top:20px;}
+#cidade{padding-top:30px;}
+#estado{margin-left: 10px;}
 /*div[id~=trabalho]{width:30%;}*/
-div[id~=estado]{ padding-botton: 15px;}
+div[id~=estado]{ padding-botton: 0px;}
 
-image[alt=foto3x4]{width: 159px; height:191px; border: solid;}
-#foto3x4{ float:right; width: 159px; height:191px; margin-right:2%; border: solid;}
+image[alt=foto3x4]{width: 159px; height:191px;}
+#foto3X4{ float:right; width: 359px; height:270px;margin-right:3%;}
+input[id~=files]{margin-left:80px;padding-top:10px;}
+#1{ float:right; width: 159px;height:250px;border: solid;}
 
 .sidebyside{ display: table; width: 100%; }
 
-.divleft{float: left; width: 48%; margin-left:10px;	padding-top: 5px;}
+.divleft{float: left; width: 48%;height:60px; margin-left:10px;	padding-top: 15px;}
 
-.divleft .sideleft{	width: 100%;}
+.divleft .sideleft{	width: 100%;height:30px;}
 
-.divright{margin-left: 50%;	width: 48%;	padding-top: 5px;}
+.divright{margin-left: 50%;	width: 48%;	height:60px; padding-top: 15px;}
 
-.divright .sideright{ width: 100%; }
+.divright .sideright{ width: 100%;height:30px; }
 
 .submitting{float: left; width: 100%;height:60px; margin-top:10px;}
 
-.submitting .left{float: left; margin-left:40%; margin-top:10px;}
+.submitting .left{float: left; margin-left:27%; margin-top:10px; width:20%;height:40px;}
 
-.submitting .right{	margin-left: 1%; margin-top:10px; }
+.submitting .right{	margin-left: 1%; margin-top:10px;width:20%; height:40px;}
