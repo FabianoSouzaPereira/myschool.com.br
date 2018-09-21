@@ -10,6 +10,7 @@ if(!empty($_POST)){
     $password = $_POST['userpassword'];
     $login = new Login();
     $userLog = $login->getLogin($email, $password);
+    $pass = array_column($userLog,'password');
     if ($userLog != 0){
      $_SESSION['login'] =  true;
          header("location: index.php");

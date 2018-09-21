@@ -13,8 +13,8 @@ include_once 'application/dao/Connection.php';
 require_once 'functions.php';
 
 
-/* if ( $_SESSION['login'] = false){
+ if ( $_SESSION['login'] == false){
     require 'login.php';
-} */
+} 
 
 ?>

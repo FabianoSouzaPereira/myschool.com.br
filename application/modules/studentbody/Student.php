@@ -20,6 +20,7 @@ class Student extends Person
      private $stuname=null;
      private $stuage=null;
      private $stuDateofBirth=null;
+     private $stuPicture=null;
      private $status="1";
      private $stuaddress=null;
      private $stuneighborhood=null;
@@ -85,7 +86,7 @@ class Student extends Person
      
      /** This function call stored procedure that Insert all information about one student; */
      public function poststudentALL(){
-    //   try {
+       try {
   
          $this->setStuenrolment($_POST['stuenrolment']);
          $this->setStuSSN($_POST['stuSSN']);
@@ -112,41 +113,46 @@ class Student extends Person
             $stmt = $conn = new Connection();
             $stmt = $conn->getInstance()->prepare($query);
             $stmt->execute();
-  //     } catch (Exception $e) {
- //          echo $e->getMessage();
-  //         exit;
-  //     }
+       } catch (Exception $e) {
+           echo $e->getMessage();
+           exit;
+      }
      }
      
      
      public function updatestudentALL(){
-//          $this->setStuenrolment($_POST['stuenrolment']);
-//          $this->setStuSSN($_POST['stuSSN']);
-//          $this->setStuId($_POST['stuId']);
-//          $this->setStuname($_POST['stuname']);
-//          $this->setStuage($_POST['stuage']);
-//          $this->setStuDateofBirth($_POST['stuDateofBirth']);
-//          $this->setStuaddress($_POST['stuaddress']);
-//          $this->setStuneighborhood($_POST['stuneighborhood']);
-//          $this->setStucity($_POST['stucity']);
-//          $this->setStustate($_POST['stustate']);
-//          $this->setStucountry($_POST['stucountry']);
-//          $this->setStuzipcode($_POST['stuzipcode']);
-//          $this->setStucellphone($_POST['stucellphone']);
-//          $this->setStuhomephone($_POST['stuhomephone']);
-//          $this->setStujobphone($_POST['stujobphone']);
-//          $this->setStuemail1($_POST['stuemail1']);
-//          $this->setStuemail2($_POST['stuemail2']);
-//          $this->setStutwitter($_POST['stutwitter']);
-//          $this->setStuwhatsapp($_POST['stuwhatsapp']);
-//          $this->setStufacebook($_POST['stufacebook']);
+         try {
+          $this->setStuenrolment($_POST['stuenrolment']);
+          $this->setStuSSN($_POST['stuSSN']);
+          $this->setStuId($_POST['stuId']);
+          $this->setStuname($_POST['stuname']);
+          $this->setStuage($_POST['stuage']);
+          $this->setStuDateofBirth($_POST['stuDateofBirth']);
+          $this->setStuPicture($_POST['stuPicture']);
+          $this->setStuaddress($_POST['stuaddress']);
+          $this->setStuneighborhood($_POST['stuneighborhood']);
+          $this->setStucity($_POST['stucity']);
+          $this->setStustate($_POST['stustate']);
+          $this->setStucountry($_POST['stucountry']);
+          $this->setStuzipcode($_POST['stuzipcode']);
+          $this->setStucellphone($_POST['stucellphone']);
+          $this->setStuhomephone($_POST['stuhomephone']);
+          $this->setStujobphone($_POST['stujobphone']);
+          $this->setStuemail1($_POST['stuemail1']);
+          $this->setStuemail2($_POST['stuemail2']);
+          $this->setStutwitter($_POST['stutwitter']);
+          $this->setStuwhatsapp($_POST['stuwhatsapp']);
+          $this->setStufacebook($_POST['stufacebook']);
          
-         $query = "call EDITSTUDENTS('{$this->getIdstudent()}','{$this->getStuname()}','{$this->getStuage()}','{$this->getStuDateofBirth()}','{$this->getStuaddress()}','{$this->getStuneighborhood()}','{$this->getStucity()}','{$this->getStustate()}','{$this->getStucountry()}','{$this->getStuzipcode()}','{$this->getStucellphone()}','{$this->getStuhomephone()}','{$this->getStujobphone()}','{$this->getStuemail1()}','{$this->getStuemail2()}','{$this->getStutwitter()}','{$this->getStuwhatsapp()}','{$this->getStufacebook()}');";
+         $query = "call EDITSTUDENTS('{$this->getIdstudent()}','{$this->getStuname()}','{$this->getStuage()}','{$this->getStuDateofBirth()}','{$this->getStuPicture()}','{$this->getStuaddress()}','{$this->getStuneighborhood()}','{$this->getStucity()}','{$this->getStustate()}','{$this->getStucountry()}','{$this->getStuzipcode()}','{$this->getStucellphone()}','{$this->getStuhomephone()}','{$this->getStujobphone()}','{$this->getStuemail1()}','{$this->getStuemail2()}','{$this->getStutwitter()}','{$this->getStuwhatsapp()}','{$this->getStufacebook()}');";
          $stmt = $conn = new Connection();
          $stmt = $conn->getInstance()->prepare($query);
          $stmt->execute();
+       } catch (Exception $e) {
+             echo $e->getMessage();
+             exit;
+        }
      }
-     
 
     /** Function does a update into studant. */
     public function update()
@@ -314,6 +320,23 @@ class Student extends Person
     {
         $this->stuDateofBirth = $stuDateofBirth;
     }
+    
+    /**
+     * @return mixed
+     */
+    public function getStuPicture()
+    {
+        return $this->stuPicture;
+    }
+    
+    /**
+     * @param mixed $stuPicture
+     */
+    public function setStuPicture($stuPicture)
+    {
+        $this->stuPicture = $stuPicture;
+    }
+    
 
     /**
      * @return string
